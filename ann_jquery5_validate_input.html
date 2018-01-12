@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="us-en">
+  <head>
+    <title>Create simple button</title>
+    <meta charset="UTF-8"/>
+    <style media="screen">
+        .hidden {
+            visibility: hidden
+        }
+        .msgName, .msgAge, .msgEmail {
+            color:rgb(255,0,0)
+        }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let uNameRegex = /^[A-ZÄÅÖ][a-zäåöA-ZÄÅÖ\-]*(\s)[A-ZÄÅÖ][a-zäåöA-ZÄÅÖ\-]*$/
+            let ageRegex = /^[0-9]+$/
+            let eAddRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/  
+           
+            //listen to key events       
+            $(".age").on ("keypress keydown keyup", function () {
+                 let uAge = $(this).val()  
+                if (!ageRegex.test(uAge)) { // check if it is not a match ie., false
+                    $(".msgAge").removeClass("hidden")  //remove the hidden status of the error message
+                    $(".msgAge").show() //then the error message will show
+                            
+                } else {
+                    //if it is a match, assign hidden status to the error message to hide it
+                    $(".msgAge").addClass("hidden")                     
+                }                        
+            });
+            $(".username").on ("keypress keydown keyup", function () {
+                let uName = $(this).val() 
+                if (!uNameRegex.test(uName)) {  
+                    $(".msgName").removeClass("hidden")
+                    $(".msgName").show()                              
+                } else {
+                    $(".msgName").addClass("hidden") 
+                }                        
+            });
+            $(".emailadd").on ("keypress keydown keyup", function () {
+                let eAdd = $(this).val() 
+                if (!eAddRegex.test(eAdd)) {  
+                    $(".msgEmail").removeClass("hidden")
+                    $(".msgEmail").show()                              
+                } else {
+                    $(".msgEmail").addClass("hidden") 
+                }                        
+            })
+        })
+    </script>
+    <body>
+      <p>Create simple form where you ask from the user name, e-mail address and age. Validate this using Regex. See also W3Schools Regex. Do not use HTML5 forms where you have already e-mail input element, ask these in plain input textfields. Show alert displaying if information was given correctly.</p>
+      <form class = "form1" name = "form1" method = "post"></form> 
+          <label>Enter your firstname and lastname [eg. Ann Viitala] </label>
+          <input type = "text" name = "username" class="username"><span class="msgName hidden">Please enter valid name format!</span><br/><br/>
+          <label>Enter your e-mail address [eg. xxxx.aaaa@gmail.com] </label>
+          <input type = "text" name = "emailadd" class="emailadd"><span class="msgEmail hidden">Please enter valid name format!</span><br/><br/>
+          <label>Enter your age </label>
+          <input type = "text" name = "age" class="age"><span class="msgAge hidden"> Please enter valid name format!</span><br/><br/>
+          
+          <!--<button class = "mybutton" type = "submit">Submit</button>-->
+      </form>
+    </body>
+  </head>
+</html>

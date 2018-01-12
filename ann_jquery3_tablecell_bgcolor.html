@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="us-en">
+  <head>
+    <title>Create simple button</title>
+    <meta charset="UTF-8" />
+    <style media="screen"></style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <style>
+		body {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+		table, tr, td {
+			border: 0.0625em solid rgb(0,0,0);
+		}
+		table {
+			width: inherit;
+			height: 31.25em;
+		}
+
+    </style>
+    <script>
+        function CellClicked () {
+            let r = Math.round(Math.random()*255)
+            let g = Math.round(Math.random()*255)
+            let b = Math.round(Math.random()*255)
+            //only specific element
+            $(this).css("background-color", "rgb(" + r + ", " + g + ", " + b + ")")     
+        }
+      
+        function pageIsLoaded(event) {
+            $("table tr").each(function () {
+                //only the specific cell
+                $.each(this.cells, function () {
+                    //only specific element
+                    $(this).click(CellClicked)
+                })
+            })
+         }
+    
+        $(document).ready(pageIsLoaded)
+    </script>
+  </head>
+    <body>
+      <p>HTML page that has a table. When clicking table cells, the table cell background color is changed.</p>
+      <table>
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>              
+          </tr>
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>              
+          </tr>
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>              
+          </tr>
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>              
+          </tr>
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>              
+          </tr>
+      </table>
+    </body>
+</html>

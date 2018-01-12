@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="UTF-8" />
+    <style media="screen"></style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+
+    function buttonClicked(event) {
+        event.preventDefault()
+        const bmivalue = 10000
+        let getinput1 = $("#weight").val()
+        let getinput2 = $("#height").val()
+        //let setinput1 = parseInt($("#weight").val(), getinput1)
+        //let setinput2 = parseInt($("#height").val(), getinput2)
+           
+        let BMI = [getinput1 / (getinput2 * getinput2)] * bmivalue
+        
+        let setBMI = $("<p></p>").text("BMI: " + BMI)
+        if(!isNaN(BMI)) {
+            $("body").append(setBMI) 
+            if (BMI < 19) {
+                $("body").append($("<p></p>").text("You are under weight!")) 
+            } else if (BMI >= 19 && BMI <= 24) {
+                $("body").append($("<p></p>").text("You have normal weight!")) 
+            } else if (BMI >= 25 && BMI <= 29) {
+                $("body").append($("<p></p>").text("You are over weight!")) 
+            } else if (BMI >= 30 && BMI <= 35) {
+                $("body").append($("<p></p>").text("You are obese!"))  
+            }                    
+        } else {
+            alert("Please give correct values!")
+        }
+    }
+    
+    function pageIsLoaded(event) {
+        $("form").submit(buttonClicked)
+    }
+    
+    $(document).ready(pageIsLoaded)
+    </script>
+  </head>
+
+  <body>
+    <h1 id="myTitle">BMI Calculator</h1>
+    <form>
+        <label>Weight [kg]:</label>
+        <input type="text" id="weight" name="weight"><br/><br/>
+        <label>Height [cm]:</label>
+        <input type="text" id="height" name="height"><br/><br/>
+        <button type="submit" id="submit" name="submit">Send</button>
+    </form>
+    
+  </body>
+</html>
